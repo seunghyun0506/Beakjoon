@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import javax.lang.model.util.ElementScanner6;
-
 public class B10993 {
     static int T = 0;
     static char[][] arr = {{'*'}};
@@ -45,11 +43,19 @@ public class B10993 {
         StringBuilder sb = new StringBuilder();
         T = sc.nextInt();
         char[][] result = recursive_function(T);
-        for(char[] tmp : result){
-            for(char tmp2 : tmp){
-                if(tmp2 == '\u0000') sb.append(' ');
+        int gijoon = (T % 2 == 1)? (result[0].length+1)/2 : (result[0].length);
+        for(int i = 0 ; i < result.length; i++){
+            for(int j = 0; j < result[i].length; j++){
+                if(gijoon == j) break;
+                if(result[i][j] == '\u0000') sb.append(' ');
                 else
-                    sb.append(tmp2);
+                    sb.append(result[i][j]);
+            }
+            if(T % 2 == 1){
+                gijoon++;
+            }
+            if(T % 2 == 0){
+                gijoon--;
             }
             sb.append("\n");
         }
